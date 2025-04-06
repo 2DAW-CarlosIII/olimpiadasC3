@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('participantes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('grupo_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->unique(['grupo_id', 'user_id']);
+            $table->string('nombre')->nullable();
+            $table->string('apellidos')->nullable();
             $table->timestamps();
         });
     }
