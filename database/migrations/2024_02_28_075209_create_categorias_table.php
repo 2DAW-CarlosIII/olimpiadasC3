@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
-            $table->foreignId('grado_id')->constrained();
+            $table->unsignedBigInteger('grado_id')->nullable();
             $table->timestamps();
+            $table->foreign('grado_id')->references('id')->on('grados');
         });
     }
 

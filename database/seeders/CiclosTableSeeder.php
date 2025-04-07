@@ -16,24 +16,31 @@ class CiclosTableSeeder extends Seeder
     {
         DB::table('grados')->truncate();
         DB::table('ciclos')->truncate();
-        $grados = array_unique(array_column(self::$ciclos, 'grado'));
 
-        foreach ($grados as $grado) {
+        foreach (self::$grados as $siglas => $nombre) {
             DB::table('grados')->insert([
-                'nombre' => $grado,
+                'nombre' => $nombre,
             ]);
         }
         foreach (self::$ciclos as $ciclo) {
             if( $ciclo['codFamilia'] == 'IFC') {
                 DB::table('ciclos')->insert([
                     'codigo' => $ciclo['codCiclo'],
-                    'grado_id' => array_search($ciclo['grado'], $grados),
+                    'grado_id' => DB::table('grados')->where('nombre', self::$grados[$ciclo['grado']])->first()->id,
                     'nombre' => $ciclo['nombre'],
                 ]);
             }
         }
         $this->command->info('¡Tablas grados y ciclos inicializada con datos!');
     }
+
+    private static $grados = array(
+        'BÁSICA' => 'Grado Básico',
+        'G.M.' => 'Grado Medio',
+        'G.S.' => 'Grado Superior',
+        'C.E. (G.M.)' => 'Curso Especialización (G.M.)',
+        'C.E. (G.S.)' => 'Curso Especialización (G.S.)',
+    );
 
     private static $ciclos = array(
         array('codFamilia' => 'ADG','grado' => 'G.M.','codCiclo' => 'ACEC2','nombre' => 'Técnico en Actividades Ecuestres'),

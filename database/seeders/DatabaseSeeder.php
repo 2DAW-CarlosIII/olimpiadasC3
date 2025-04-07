@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         $this->call(CentroSeeder::class);
         $this->call(CiclosTableSeeder::class);
+        $this->call(CategoriasTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         // \App\Models\User::factory(10)->create();
 

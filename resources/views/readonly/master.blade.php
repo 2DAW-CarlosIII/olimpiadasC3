@@ -33,6 +33,7 @@
 			<script src="{{ asset('/readonly/assets/js/breakpoints.min.js') }}"></script>
 			<script src="{{ asset('/readonly/assets/js/util.js') }}"></script>
 			<script src="{{ asset('/readonly/assets/js/main.js') }}"></script>
+			<script src="{{ asset('/inscripciones.js') }}"></script>
 
 	</body>
 </html>

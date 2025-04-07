@@ -242,6 +242,10 @@ input, select, textarea {
         color: #a94442;
     }
 
+    .oculto{
+        display: none !important;
+    }
+
 /* Row */
 
 	.row {

@@ -45,7 +45,7 @@
                         <section id="three">
                             <div class="container">
                                 <h3>Inscripciones</h3>
-                                @include('readonly.inscripcion_form')
+                                @include('partials.inscripciones.inscripcion_form')
                             </div>
                         </section>
 
