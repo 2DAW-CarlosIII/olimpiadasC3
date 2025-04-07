@@ -23,7 +23,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('patrocinadores', PatrocinadorController::class);
+    Route::resource('patrocinadores', PatrocinadorController::class)
+        ->parameters(['patrocinadores' => 'patrocinador']);
 });
 
 Route::middleware('auth')->group(function () {
