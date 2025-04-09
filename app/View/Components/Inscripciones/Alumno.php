@@ -24,7 +24,7 @@ class Alumno extends Component
         return view('components.inscripciones.alumno',
         [
             'oldNombre' => old('nombre'),
-            'oldDni' => old('dni'),
+            'oldApellido' => old('apellido'),
         ]);
     }
 }

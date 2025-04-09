@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ciclo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class InscripcionesController extends Controller
 {
@@ -19,7 +20,7 @@ class InscripcionesController extends Controller
             'categoria' => 'required|numeric',
             'grupo' => 'required|string|max:255',
             'nombre.*' => 'nullable|string|max:255',
-            'dni.*' => 'nullable|string|max:255',
+            'apellido.*' => 'nullable|string|max:255',
         ]);
 
         // Validación adicional https://laravel.com/docs/10.x/validation#performing-additional-validation
@@ -56,7 +57,40 @@ class InscripcionesController extends Controller
                         ->withInput();
         }
 
-        // Guardar los datos en la base de datos
+        // Generar un usuario para el tutor
+        $user = \App\Models\User::where('email', $request->email_prof_resp)->first();
+        if (!$user) {
+            $password = Str::random(10);
+            $user = \App\Models\User::create([
+                'name' => $request->prof_resp,
+                'email' => $request->email_prof_resp,
+                'password' => bcrypt($password),
+            ]);
+        }
+
+        // Crear la inscripción del grupo
+        $grupo = \App\Models\Grupo::create([
+            'nombre' => $request->grupo,
+            'abreviatura' => Str::slug($request->grupo),
+            'password' => Str::random(10),
+            'tutor' => $user->id,
+            'centro_id' => $request->centro,
+            'ciclo_id' => $request->ciclo,
+            'categoria_id' => $request->categoria,
+        ]);
+
+        // Crear los participantes
+        $alumnos = [];
+        foreach ($request->nombre as $key => $nombre) {
+            if ($nombre) {
+                $alumnos[] = [
+                    'nombre' => $nombre,
+                    'apellidos' => $request->apellido[$key],
+                    'grupo_id' => $grupo->id,
+                ];
+            }
+        }
+        \App\Models\Participante::insert($alumnos);
 
         return redirect()->route('home')->with('success', 'Inscripción realizada correctamente.<br />Recibirá un correo electrónico con la confirmación de la inscripción.');
     }
