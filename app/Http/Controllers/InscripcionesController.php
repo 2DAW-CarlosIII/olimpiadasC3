@@ -68,10 +68,12 @@ class InscripcionesController extends Controller
             ]);
         }
 
+        // Necesito obtener los 2 últimos dígitos del año en curso
+        $year = date('y');
         // Crear la inscripción del grupo
         $grupo = \App\Models\Grupo::create([
             'nombre' => $request->grupo,
-            'abreviatura' => Str::slug($request->grupo),
+            'abreviatura' => 'O' . $year . "_" . Str::slug($request->grupo),
             'password' => Str::random(10),
             'tutor' => $user->id,
             'centro_id' => $request->centro,
@@ -91,7 +93,14 @@ class InscripcionesController extends Controller
             }
         }
         \App\Models\Participante::insert($alumnos);
-
-        return redirect()->route('home')->with('success', 'Inscripción realizada correctamente.<br />Recibirá un correo electrónico con la confirmación de la inscripción.');
+        // Enviar correo de confirmación al tutor
+        $mensajeCorreo = "Recibirá un correo electrónico con la confirmación de la inscripción.";
+        try {
+            \Mail::to($user->email)->send(new \App\Mail\InscripcionConfirmada($request->all(), $grupo, $user->password));
+        } catch (\Exception $e) {
+            // Manejar el error de envío de correo
+            $mensajeCorreo = "Error al enviar el correo de confirmación.<br />Por favor. Póngase en contacto con la organización.";
+        }
+        return redirect()->route('home')->with('success', 'Inscripción realizada correctamente.<br />' . $mensajeCorreo);
     }
 }
