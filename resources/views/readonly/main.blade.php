@@ -62,34 +62,7 @@
 
                     <!-- Five -->
                         <section id="five">
-                            <div class="container">
-                                <h3>Patrocinadores</h3>
-
-                                <p>El CIFP Carlos III y todos los participantes en la Olimpiada Informática agradecen la colaboración de</p>
-                                <div class="features">
-                                    <article>
-                                        <a href="#" class="image"><img src="{{ asset('/readonly/images/pic01.jpg') }}" alt="" /></a>
-                                        <div class="inner">
-                                            <h4>Possibly broke spacetime</h4>
-                                            <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-                                        </div>
-                                    </article>
-                                    <article>
-                                        <a href="#" class="image"><img src="{{ asset('/readonly/images/pic02.jpg') }}" alt="" /></a>
-                                        <div class="inner">
-                                            <h4>Terraformed a small moon</h4>
-                                            <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-                                        </div>
-                                    </article>
-                                    <article>
-                                        <a href="#" class="image"><img src="{{ asset('/readonly/images/pic03.jpg') }}" alt="" /></a>
-                                        <div class="inner">
-                                            <h4>Snapped dark matter in the wild</h4>
-                                            <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
+                            <x-frontend.patrocinadores />
                         </section>
                         <!--
                                 <section>
