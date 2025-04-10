@@ -7,11 +7,11 @@
             </header>
             <nav id="nav">
                 <ul>
-                    <li><a href="#one" class="active">Objetivos</a></li>
-                    <li><a href="#two">Ediciones</a></li>
-                    <li><a href="#three">Inscripciones</a></li>
-                    <li><a href="#four">Resultados</a></li>
-                    <li><a href="#five">Patrocinadores</a></li>
+                    <li><a href="#objetivos" class="active">Objetivos</a></li>
+                    <li><a href="#categorias">Categorìas</a></li>
+                    <li><a href="#inscripciones">Inscripciones</a></li>
+                    <li><a href="#resultados">Resultados</a></li>
+                    <li><a href="#patrocinadores">Patrocinadores</a></li>
                     <li><a href="/dashboard">Admin</a></li>
                 </ul>
             </nav>

@@ -34,6 +34,6 @@
 			<script src="{{ asset('/readonly/assets/js/util.js') }}"></script>
 			<script src="{{ asset('/readonly/assets/js/main.js') }}"></script>
 			<script src="{{ asset('/inscripciones.js') }}"></script>
-
+            <script src="https://kit.fontawesome.com/c627327887.js" crossorigin="anonymous"></script>
 	</body>
 </html>
