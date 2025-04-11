@@ -9,6 +9,7 @@ use App\Http\Controllers\InscripcionesController;
 use App\Http\Controllers\Admin\PatrocinadorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ParticipanteController;
+use App\Http\Controllers\Admin\EdicionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::resource('grupos', GrupoController::class);
     Route::resource('patrocinadores', PatrocinadorController::class)
         ->parameters(['patrocinadores' => 'patrocinador']);
+    Route::resource('ediciones', EdicionController::class)
+        ->parameters(['ediciones' => 'edicion']);
     Route::resource('participantes', ParticipanteController::class);
 });
 
