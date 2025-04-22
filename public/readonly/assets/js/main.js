@@ -57,7 +57,7 @@
 	// Header Panel.
 
 		// Nav.
-			var $nav_a = $nav.find('a');
+			var $nav_a = $nav.find('a[href^="#"]');
 
 			$nav_a
 				.addClass('scrolly')
@@ -66,8 +66,10 @@
 					var $this = $(this);
 
 					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
+						if ($this.attr('href').charAt(0) != '#') {
+                            $this.removeClasass('scrolly');
 							return;
+                        }
 
 					// Deactivate all links.
 						$nav_a.removeClass('active');

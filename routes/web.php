@@ -1,10 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PatrocinadorController;
+use App\Http\Controllers\Admin\CategoriaController;
+use App\Http\Controllers\Admin\CentroController;
 use App\Http\Controllers\Admin\CicloController;
+use App\Http\Controllers\Admin\GradoController;
+use App\Http\Controllers\Admin\GrupoController;
+use App\Http\Controllers\InscripcionesController;
+use App\Http\Controllers\Admin\PatrocinadorController;
 use App\Http\Controllers\Admin\PruebaController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ParticipanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +25,23 @@ use App\Http\Controllers\Admin\PruebaController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::post('/inscripcion', [InscripcionesController::class, 'store'])->name('inscripcion');
 
 Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
-        return view('dashboard');
+        return redirect()->route('grupos.index');
     })->name('dashboard');
+    Route::resource('categorias', CategoriaController::class);
+    Route::resource('centros', CentroController::class);
+    Route::resource('ciclos', CicloController::class);
+    Route::resource('grados', GradoController::class);
+    Route::resource('grupos', GrupoController::class);
     Route::resource('patrocinadores', PatrocinadorController::class)
         ->parameters(['patrocinadores' => 'patrocinador']);
-    Route::resource('ciclos', CicloController::class)
-        ->parameters(['ciclos' => 'ciclo']);
-    Route::resource('pruebas', PruebaController::class)
-        ->parameters(['pruebas' => 'prueba']);
+    Route::resource('pruebas', PruebaController::class);
+    Route::resource('participantes', ParticipanteController::class);
 });
 
 Route::middleware('auth')->group(function () {

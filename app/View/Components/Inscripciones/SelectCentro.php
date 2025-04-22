@@ -27,6 +27,7 @@ class SelectCentro extends Component
             ->get();
         return view('components.inscripciones.select-centro', [
             'centros' => $centros,
+            'oldValue' => old('centro'),
         ]);
     }
 }

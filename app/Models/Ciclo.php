@@ -15,4 +15,9 @@ class Ciclo extends Model
         'nombre',
         'grado_id',
     ];
+
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class, 'grado_id');
+    }
 }

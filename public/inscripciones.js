@@ -27,7 +27,7 @@ window.onload = function() {
 
     let categoriaSelect = document.getElementById('categoria');
     let camposAlumnos = document.getElementsByClassName('alumnos');
-    let camposDnis = document.getElementsByClassName('dnis');
+    let camposApellidos = document.getElementsByClassName('apellidos');
     let campoGrupo = document.getElementsByClassName('grupo')[0];
 
     let fpBasicaCategorias = [3, 4];
@@ -43,8 +43,8 @@ window.onload = function() {
             for (let i = 0; i < camposAlumnos.length; i++) {
               camposAlumnos[i].classList.add('oculto');
               camposAlumnos[i].value = '';
-              camposDnis[i].classList.add('oculto');
-              camposDnis[i].value = '';
+              camposApellidos[i].classList.add('oculto');
+              camposApellidos[i].value = '';
             }
             for (let i = 0; i < categoriaSelect.options.length; i++) {
               let categoria = categoriaSelect.options[i];
@@ -74,8 +74,8 @@ window.onload = function() {
             for (let i = 0; i < camposAlumnos.length; i++) {
               camposAlumnos[i].classList.add('oculto');
               camposAlumnos[i].value = '';
-              camposDnis[i].classList.add('oculto');
-              camposDnis[i].value = '';
+              camposApellidos[i].classList.add('oculto');
+              camposApellidos[i].value = '';
             }
             campoGrupo.classList.add('oculto');
         }
@@ -96,11 +96,11 @@ window.onload = function() {
       }
       for (let i = 0; i < camposAlumnos.length; i++) {
         camposAlumnos[i].classList.add('oculto');
-        camposDnis[i].classList.add('oculto');
+        camposApellidos[i].classList.add('oculto');
       }
       for (let i = 0; i < limite; i++) {
       camposAlumnos[i].classList.remove('oculto');
-      camposDnis[i].classList.remove('oculto');
+      camposApellidos[i].classList.remove('oculto');
       }
       campoGrupo.classList.remove('oculto');
     });

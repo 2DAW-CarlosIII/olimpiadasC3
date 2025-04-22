@@ -26,6 +26,7 @@ class SelectCategoria extends Component
             ->get();
         return view('components.inscripciones.select-categoria', [
             'categorias' => $categorias,
+            'oldValue' => old('categoria'),
         ]);
     }
 }

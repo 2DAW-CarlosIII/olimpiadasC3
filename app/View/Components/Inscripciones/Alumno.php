@@ -21,6 +21,10 @@ class Alumno extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.inscripciones.alumno');
+        return view('components.inscripciones.alumno',
+        [
+            'oldNombre' => old('nombre'),
+            'oldApellido' => old('apellido'),
+        ]);
     }
 }

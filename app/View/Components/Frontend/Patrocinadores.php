@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Inscripciones;
+namespace App\View\Components\Frontend;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SelectCiclo extends Component
+class Patrocinadores extends Component
 {
     /**
      * Create a new component instance.
@@ -21,13 +21,9 @@ class SelectCiclo extends Component
      */
     public function render(): View|Closure|string
     {
-        $ciclos = \App\Models\Ciclo
-            ::orderBy('grado_id', 'asc')
-            ->orderBy('nombre', 'asc')
-            ->get();
-        return view('components.inscripciones.select-ciclo', [
-            'ciclos' => $ciclos,
-            'oldValue' => old('ciclo'),
+        $patrocinadores = \App\Models\Patrocinador::all();
+        return view('components.frontend.patrocinadores', [
+            'patrocinadores' => $patrocinadores,
         ]);
     }
 }

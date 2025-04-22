@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('codcen')->unique();
             $table->string('dencen', 255);
             $table->char('titularidad',1);
-            $table->string('domcen');
+            $table->string('domcen')->nullable();
             $table->integer('cpcen');
             $table->string('loccen', 50);
             $table->string('muncen', 50);
