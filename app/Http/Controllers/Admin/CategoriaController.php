@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
 {
@@ -32,11 +31,13 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|max:100'
+            'nombre' => 'required|max:100',
+            'descripcion' => 'nullable|max:255',
         ]);
 
         Categoria::create([
-            'nombre' => $request->nombre
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
         ]);
 
         return redirect()->route('categorias.index')->with('success', 'Categoria creado correctamente.');
@@ -56,10 +57,12 @@ class CategoriaController extends Controller
     public function update(Request $request, Categoria $categoria)
     {
         $request->validate([
-            'nombre' => 'required|max:100'
+            'nombre' => 'required|max:100',
+            'descripcion' => 'nullable|max:255',
         ]);
 
         $categoria->nombre = $request->nombre;
+        $categoria->descripcion = $request->descripcion;
         $categoria->save();
 
         return redirect()->route('categorias.index')->with('success', 'Categoria actualizado correctamente.');
@@ -70,7 +73,6 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        Storage::delete($categoria->nombre);
         $categoria->delete();
 
         return redirect()->route('categorias.index')->with('success', 'Categoria eliminado correctamente.');

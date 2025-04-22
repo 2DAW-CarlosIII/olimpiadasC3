@@ -16,6 +16,10 @@
                             <label for="nombre" class="block text-gray-700">Nombre</label>
                             <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" class="w-full border-gray-300 rounded-md">
                         </div>
+                        <div class="mb-4">
+                            <label for="descripcion" class="block text-gray-700">Descripcion</label>
+                            <input type="text" name="descripcion" id="descripcion" value="{{ old('descripcion') }}" class="w-full border-gray-300 rounded-md">
+                        </div>
                         <input type="submit" class="primary" value="Guardar"/>
                     </form>
                 </div>

@@ -15,6 +15,7 @@
                             <tr>
                                 <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Nombre</th>
+                                <th class="px-4 py-2">Descripción</th>
                                 <th class="px-4 py-2">Acciones</th>
                             </tr>
                         </thead>
@@ -23,6 +24,7 @@
                                 <tr>
                                     <td class="border px-4 py-2">{{ $categoria->id }}</td>
                                     <td class="border px-4 py-2">{{ $categoria->nombre }}</td>
+                                    <td class="border px-4 py-2">{{ $categoria->descripcion }}</td>
 
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-sm btn-warning">Editar</a>
