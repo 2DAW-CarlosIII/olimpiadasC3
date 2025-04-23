@@ -47,8 +47,13 @@
                             </div>
                         </section>
 
-                    <!-- Five -->
-                        <section id="patrocinadores">
-                            <x-frontend.patrocinadores />
-                        </section>
+                        <!-- Five -->
+                            <section id="patrocinadores">
+                                <x-frontend.patrocinadores />
+                            </section>
+
+                        <!-- Six -->
+                            <section id="ejercicios_ediciones_anteriores">
+                                    @include('partials.frontend.ejercicios_ediciones_anteriores')
+                            </section>
                 </div>
