@@ -19,7 +19,9 @@
                         </div>
                         <div class="mb-4">
                             <label for="descripcion" class="block text-gray-700">Descripcion</label>
-                            <input type="text" name="descripcion" id="descripcion" value="{{ old('descripcion') ?? $categoria->descripcion }}" class="w-full border-gray-300 rounded-md">
+                            <textarea id="tinymce" name="descripcion" id="descripcion" class="w-full border-gray-300 rounded-md">
+                                {{ old('descripcion') ?? $categoria->descripcion }}
+                            </textarea>
                         </div>
                         <input type="submit" class="primary" value="Guardar"/>
                     </form>
