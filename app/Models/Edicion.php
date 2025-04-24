@@ -21,6 +21,14 @@ class Edicion extends Model
         'fecha_cierre',
         'css_file'
     ];
+
+    public static function getEdicionActual()
+    {
+        if (session()->has('edicion')) {
+            return session('edicion');
+        }
+        return Edicion::orderBy('fecha_apertura', 'DESC')->first();
+    }
 }
 
 //faltan añadir las relaciones entre tablas
