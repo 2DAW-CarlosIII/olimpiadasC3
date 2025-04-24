@@ -13,6 +13,7 @@
 
 		<link rel="stylesheet" href="{{ asset('/ediciones/edicion2025/main.css') }}" />
         <!-- Scripts -->
+        <x-tinymce.config/>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
