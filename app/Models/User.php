@@ -36,6 +36,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function esAdministrador() {
+        return $this->email === env('ADMIN_EMAIL');
+    }
+
     /**
      * The attributes that should be cast.
      *

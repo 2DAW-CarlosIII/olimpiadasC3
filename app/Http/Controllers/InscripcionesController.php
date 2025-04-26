@@ -6,11 +6,13 @@ use App\Models\Ciclo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 
 class InscripcionesController extends Controller
 {
     public function store(Request $request)
     {
+        Gate::authorize('inscripcionStore'); //Laravel le pasa el usuario actual al gate definido... hace un auth()->user()
         // Documentación de la validación https://laravel.com/docs/10.x/validation#manually-creating-validators
         $validator = Validator::make($request->all(), [
             'centro' => 'required|numeric',
