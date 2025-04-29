@@ -31,8 +31,8 @@ class ResultadoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
-            'palmares' => 'required|text',
+            'id' => 'required|min:1',
+            'palmares' => 'required|string',
 
         ]);
 
@@ -41,7 +41,7 @@ class ResultadoController extends Controller
             'palmares' => $request->palmares
         ]);
 
-        return redirect()->route('admin.resultados.index')->with('success', 'Resultado creado correctamente.');
+        return redirect()->route('resultados.index')->with('success', 'Resultado creado correctamente.');
     }
 
     /**
@@ -58,15 +58,15 @@ class ResultadoController extends Controller
     public function update(Request $request, Resultado $resultado)
     {
         $request->validate([
-            'id' => 'required',
-            'palmares' => 'required|text',
+            'id' => 'required|min:1', /*no puede ser 0 tiene que ser 1 o mayor*/
+            'palmares' => 'required|string',
 
         ]);
 
         $resultado->id = $request->id;
         $resultado->palmares = $request->palmares;
         $resultado->save();
-        return redirect()->route('admin.resultados.index')->with('success', 'Resultado actualizado correctamente.');
+        return redirect()->route('resultados.index')->with('success', 'Resultado actualizado correctamente.');
     }
 
     /**
@@ -75,6 +75,6 @@ class ResultadoController extends Controller
     public function destroy(Resultado $resultado)
     {
         $resultado->delete();
-        return redirect()->route('admin.resultados.index')->with('success', 'Resultado eliminado correctamente.');
+        return redirect()->route('resultados.index')->with('success', 'Resultado eliminado correctamente.');
     }
 }

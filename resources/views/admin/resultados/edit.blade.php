@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Editar Grado') }}
+            {{ __('Editar Resultado') }}
         </h2>
     </x-slot>
 
@@ -10,12 +10,18 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @include('partials.alerts')
-                    <form action="{{ route('grados.update', ['grado' => $grado]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('resultados.update', ['resultado' => $resultado]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-4">
-                            <label for="nombre" class="block text-gray-700">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" value="{{ old('nombre') ?? $grado->nombre }}" class="w-full border-gray-300 rounded-md">
+                            <label for="id" class="block text-gray-700">Id</label>
+                            <input type="number" name="id" min="1" id="id" value="{{ old('id') ??  $resultado->id }}" class="w-full border-gray-300 rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="palmares" class="block text-gray-700">Palmares</label>
+                            <textarea id="tinymce" name="palmares" id="palmares" class="w-full border-gray-300 rounded-md">
+                                {{ old('palmares') ?? $resultado->palmares }}
+                            </textarea>
                         </div>
                         <input type="submit" class="primary" value="Guardar"/>
                     </form>

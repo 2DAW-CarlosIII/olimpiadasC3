@@ -15,6 +15,7 @@
                             <tr>
                                 <th class="px-4 py-2">ID</th>
                                 <th class="px-4 py-2">Palmares</th>
+                                <th class="px-4 py-2">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
