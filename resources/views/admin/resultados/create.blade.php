@@ -19,7 +19,7 @@
                         <div class="mb-4">
                             <label for="palmares" class="block text-gray-700">Palmares</label>
                             <textarea id="tinymce" name="palmares" id="palmares" class="w-full border-gray-300 rounded-md">
-                                {{ old('palmares') }}
+                                {{ old('palmares') ?? $tabla }}
                             </textarea>
                         </div>
                         <input type="submit" class="primary" value="Guardar"/>

@@ -22,7 +22,8 @@ class ResultadoController extends Controller
      */
     public function create()
     {
-        return view('admin.resultados.create');
+        $tablaGenerada = Resultado::generarTablaPalmares();
+        return view('admin.resultados.create')->with('tabla', $tablaGenerada);
     }
 
     /**
