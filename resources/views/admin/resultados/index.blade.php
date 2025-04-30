@@ -21,7 +21,7 @@
                         <tbody>
                             @foreach ($resultados as $resultado)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $resultado->id }}</td>
+                                    <td class="border px-4 py-2">{{ $resultado->edicion->curso_escolar }}</td>
                                     <td class="border px-4 py-2">{{ $resultado->palmares }}</td>
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('resultados.edit', $resultado) }}" class="btn btn-sm btn-warning">Editar</a>
