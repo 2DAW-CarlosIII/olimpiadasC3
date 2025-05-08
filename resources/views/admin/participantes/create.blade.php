@@ -14,7 +14,6 @@
                         @csrf
                         <div class="mb-4">
                             <label for="grupo">Grupo: {{$grupo->nombre }}</label>
-                            <input type="hidden" name="grupo_id" id="grupo_id" value="{{ $grupo->id }}">
                         </div>
                         <div class="mb-4">
                             <label for="nombre" class="block text-gray-700">Nombre</label>
