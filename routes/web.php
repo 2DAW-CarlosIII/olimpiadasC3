@@ -41,7 +41,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/', function () {
         return redirect()->route('grupos.index');
     })->name('dashboard');
-    Route::resource('categorias', CategoriaController::class);
     Route::resource('centros', CentroController::class);
     Route::resource('grados.ciclos', CicloController::class)->shallow();
     Route::resource('ediciones', EdicionController::class)
@@ -55,6 +54,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         ->parameters(['patrocinadores' => 'patrocinador']);
     Route::resource('pruebas', PruebaController::class);
     Route::resource('grupos.participantes', ParticipanteController::class)->shallow();
+    Route::resource('ediciones.categorias', CategoriaController::class)
+        ->parameters(['ediciones' => 'edicion', 'categorias' => 'categoria'])
+        ->shallow();
 });
 
 Route::middleware('auth')->group(function () {
@@ -63,4 +65,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
