@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Resultado;
+use App\Models\Edicion;
 use Illuminate\Http\Request;
 
 class ResultadoController extends Controller
