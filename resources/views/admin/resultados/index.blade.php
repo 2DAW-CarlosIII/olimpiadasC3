@@ -19,21 +19,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($resultados as $resultado)
-                                <tr>
-                                    <td class="border px-4 py-2">{{ $resultado->edicion->curso_escolar }}</td>
-                                    <td class="border px-4 py-2">{!! $resultado->palmares !!}</td>
-                                    <td class="border px-4 py-2">
-
-                                        <a href="{{ route('resultados.edit', $resultado) }}" class="btn btn-sm btn-warning">Editar</a>
-                                        <form action="{{ route('resultados.destroy', $resultado) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td class="border px-4 py-2">{{ $edicion->curso_escolar }}</td>
+                                <td class="border px-4 py-2">{!! $edicion->resultados->palmares !!}</td>
+                                <td class="border px-4 py-2">
+                                    <a href="{{ route('resultados.edit', $edicion->resultados) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <form action="{{ route('resultados.destroy', $edicion->resultados) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

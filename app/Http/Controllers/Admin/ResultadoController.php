@@ -12,10 +12,10 @@ class ResultadoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Edicion $edicion)
     {
-        $resultados = Resultado::all();
-        return view('admin.resultados.index', compact('resultados'));
+        $resultados = $edicion->resultados;
+        return view('admin.resultados.index', compact('edicion', 'resultados'));
     }
 
     /**

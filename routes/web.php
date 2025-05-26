@@ -54,7 +54,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::resource('pruebas', PruebaController::class);
     Route::resource('grupos.participantes', ParticipanteController::class)->shallow();
     Route::resource('ediciones.resultados', ResultadoController::class)->shallow()
-        ->parameters(['ediciones' => 'edicion']);
+        ->parameters(['ediciones' => 'edicion', 'resultados' => 'resultado']);
 });
 
 Route::middleware('auth')->group(function () {
