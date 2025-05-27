@@ -10,18 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @include('partials.alerts')
-                    <form action="{{ route('resultados.store') }}" method="POST">
+                    <form action="{{ route('ediciones.resultados.store', $edicion) }}" method="POST">
                         @csrf
-                        <div class="mb-4">
-                            <label for="id">Edición:</label>
-                            <select id="id" name="id">
-                                @foreach ($ediciones as $edicion)
-                                    <option value="{{ $edicion->id }}" {{ session('edicion') && session('edicion')->id == $edicion->id ? 'selected' : '' }}>
-                                        {{ $edicion->curso_escolar }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="mb-4">
                             <label for="palmares" class="block text-gray-700">Palmarés</label>
                             <textarea id="tinymce" name="palmares" id="palmares" class="w-full border-gray-300 rounded-md">

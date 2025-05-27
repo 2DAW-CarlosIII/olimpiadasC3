@@ -35,7 +35,7 @@ class Edicion extends Model
 
     public function resultados()
     {
-        return $this->hasOne(Resultado::class, 'id');
+        return $this->hasMany(Resultado::class, 'id');
     }
 
     public function categorias()

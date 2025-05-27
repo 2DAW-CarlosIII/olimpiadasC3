@@ -46,7 +46,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::resource('grados.ciclos', CicloController::class)->shallow();
     Route::resource('ediciones', EdicionController::class)
         ->parameters(['ediciones' => 'edicion']);
-    Route::resource('resultados', ResultadoController::class);
     Route::resource('grados', GradoController::class);
     Route::get('grupos/{grupo}/crearUsuarioMoodle', [GrupoController::class, 'crearUsuarioMoodle'])->name('grupos.crearUsuarioMoodle');
     Route::get('grupos/crearUsuariosMoodle', [GrupoController::class, 'crearUsuariosMoodle'])->name('grupos.crearUsuariosMoodle');
@@ -55,6 +54,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         ->parameters(['patrocinadores' => 'patrocinador']);
     Route::resource('pruebas', PruebaController::class);
     Route::resource('grupos.participantes', ParticipanteController::class)->shallow();
+    Route::resource('ediciones.resultados', ResultadoController::class)->shallow()
+        ->parameters(['ediciones' => 'edicion', 'resultados' => 'resultado']);
 });
 
 Route::middleware('auth')->group(function () {
