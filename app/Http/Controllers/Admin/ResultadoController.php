@@ -21,27 +21,19 @@ class ResultadoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Edicion $edicion)
     {
-        $ediciones = \App\Models\Edicion::all();
-        // eliminar las ediciones que tienen resultados
-        $ediciones = $ediciones->filter(function ($edicion) {
-            $resultado = $edicion->resultados;
-            return !($resultado);
-        });
-
         $palmaresEsqueleto = \App\Models\Resultado::getPalmaresEsqueleto(); // Generar el contenido inicial
 
-        return view('admin.resultados.create', compact('ediciones', 'palmaresEsqueleto'));
+        return view('admin.resultados.create', compact('edicion', 'palmaresEsqueleto'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Edicion $edicion)
     {
         $request->validate([
-            'id' => 'required|exists:ediciones,id|unique:resultados,id',
             'palmares' => 'required|string',
         ]);
         Resultado::create([
@@ -81,7 +73,7 @@ class ResultadoController extends Controller
             'palmares' => $request->palmares,
         ]);
 
-        return redirect()->route('resultados.index')->with('success', 'Resultado actualizado con éxito.');
+        return redirect()->route('ediciones.resultados.index', $resultado->edicion)->with('success', 'Resultado actualizado con éxito.');
     }
 
     /**
@@ -89,7 +81,8 @@ class ResultadoController extends Controller
      */
     public function destroy(Resultado $resultado)
     {
+        $edicion = $resultado->edicion;
         $resultado->delete();
-        return redirect()->route('resultados.index')->with('success', 'Resultado eliminado con éxito.');
+        return redirect()->route('ediciones.resultados.index', $edicion)->with('success', 'Resultado eliminado con éxito.');
     }
 }
