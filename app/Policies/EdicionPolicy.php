@@ -13,7 +13,8 @@ class EdicionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        //si es admin ve las ediciones pero si el docente no tiene ningun grupo no le deja ver nada directamente tiene que tener alguna edicion en la que sus grupos este relacionado con este usuario en mi caso tutor
+        return $user->isAdmin() || $user->isTutor();
     }
 
     /**
@@ -21,7 +22,7 @@ class EdicionPolicy
      */
     public function view(User $user, Edicion $edicion): bool
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -29,15 +30,15 @@ class EdicionPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->isAdmin(); //solo el administrador crea una edicion los demas no
     }
 
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Edicion $edicion): bool
-    {
-        //
+    { //solo puede editar la edicion el administrador
+        return $user->isAdmin();
     }
 
     /**
@@ -45,7 +46,7 @@ class EdicionPolicy
      */
     public function delete(User $user, Edicion $edicion): bool
     {
-        //
+        return $user->isAdmin();
     }
 
     /**

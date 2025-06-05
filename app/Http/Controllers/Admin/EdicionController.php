@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class EdicionController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Edicion::class, 'edicion'); //va a relacionar automaticamente los metodos del controlador con las politicas
+    }
+
     /**
      * Display a listing of the resource.
      */

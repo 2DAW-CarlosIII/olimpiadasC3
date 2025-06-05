@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Grupo;
 use App\Models\User;
+use App\Models\Edicion;
 use Illuminate\Auth\Access\Response;
 
 class GrupoPolicy
@@ -13,7 +14,7 @@ class GrupoPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->isTutor();
+        return $user->isAdmin() || $user->isTutor();
     }
 
     /**
@@ -21,7 +22,7 @@ class GrupoPolicy
      */
     public function view(User $user, Grupo $grupo): bool
     {
-        return $user->isTutor($grupo);
+        return $user->isTutor($grupo) || $user->isAdmin();
     }
 
     /**
@@ -37,7 +38,7 @@ class GrupoPolicy
      */
     public function update(User $user, Grupo $grupo): bool
     {
-        return $user->isTutor($grupo);
+        return $user->isTutor($grupo) || $user->isAdmin();
     }
 
     /**
@@ -46,6 +47,12 @@ class GrupoPolicy
     public function delete(User $user, Grupo $grupo): bool
     {
         return $user->isTutor($grupo);
+    }
+
+    //para que no le salga los grupos que hay en una edicion que no le corresponde porque no tiene ningun grupo en el que es tutor y ademas no le saldran porque el index solo le va a mostrar los grupos en los que es tutor pero le sale ya la informacion que existe esa edicion(solo el nombre) lo cual cuanto menos datos sepa mejor
+    public function soloVerGruposEdicion(User $user, Edicion $edicion) : bool
+    {
+        return $edicion->grupos()->where('tutor', $user->id)->exists() || $user->isAdmin();
     }
 
     /**
