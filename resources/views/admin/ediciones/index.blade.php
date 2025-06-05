@@ -44,6 +44,9 @@
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                         </form>
                                     </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('ediciones.grupos.index', ['edicion' => $edicion]) }}" class="btn btn-sm btn-primary">Ver Grupos</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Grupos') }}
+            {{ __('Grupos') }} de la edicion {{ $edicion->curso_escolar}}
         </h2>
     </x-slot>
 
@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                     <a href="{{ route('ediciones.index') }}" class="button primary">Volver a Ediciones</a>
                     <table class="table-auto w-full">
                         <tbody>
                             @foreach ($grupos as $grupo)
@@ -50,7 +51,8 @@
                                 </tr>
                                 <tr>
                                     <td class="border px-4 py-2" colspan="3">
-                                        <a href="{{ route('grupos.participantes.index', ['grupo' => $grupo]) }}" class="btn btn-sm btn-primary">Ver Estudiantes</a>
+                                        <a href="{{ route('grupos.show', ['grupo' => $grupo]) }}" class="btn btn-sm btn-primary">Ver Grupo</a>
+                                        <a href="{{ route('grupos.participantes.index', $grupo) }}" class="btn btn-sm btn-warning">Ver participantes</a>
                                     </td>
                                 </tr>
                             @endforeach

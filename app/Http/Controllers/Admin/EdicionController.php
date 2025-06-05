@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Edicion;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 class EdicionController extends Controller
@@ -13,7 +15,18 @@ class EdicionController extends Controller
      */
     public function index()
     {
-        $ediciones = Edicion::all();
+        if (Auth::user()->isAdmin()) {
+            $ediciones = Edicion::all(); //si es admin lo ve todo
+        } else {
+            // Obtiene los ids de ediciones que tienen grupos con el tutor que este logueado
+            $edicionIds = Grupo::where('tutor', Auth::id())
+                ->pluck('edicion_id')
+                ->unique();
+
+            //Me da todas las ediciones que tienen grupos con el tutor logueado
+            $ediciones = Edicion::whereIn('id', $edicionIds)->get();
+        }
+
         return view('admin.ediciones.index', compact('ediciones'));
     }
 

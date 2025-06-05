@@ -39,7 +39,7 @@ Route::prefix('sessions')->group(function () {
 
 Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
-        return redirect()->route('grupos.index');
+        return redirect()->route('ediciones.index');
     })->name('dashboard');
     Route::resource('categorias', CategoriaController::class);
     Route::resource('centros', CentroController::class);
@@ -50,7 +50,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::resource('grados', GradoController::class);
     Route::get('grupos/{grupo}/crearUsuarioMoodle', [GrupoController::class, 'crearUsuarioMoodle'])->name('grupos.crearUsuarioMoodle');
     Route::get('grupos/crearUsuariosMoodle', [GrupoController::class, 'crearUsuariosMoodle'])->name('grupos.crearUsuariosMoodle');
-    Route::resource('grupos', GrupoController::class);
+    Route::resource('ediciones.grupos', GrupoController::class)->shallow()->parameters(['ediciones' => 'edicion']);
     Route::resource('patrocinadores', PatrocinadorController::class)
         ->parameters(['patrocinadores' => 'patrocinador']);
     Route::resource('pruebas', PruebaController::class);
