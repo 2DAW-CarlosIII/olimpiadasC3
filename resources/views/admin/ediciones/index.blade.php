@@ -9,7 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('ediciones.create') }}" class="button primary">Crear Edicion</a>
+                    @can('create')
+                        <a href="{{ route('ediciones.create') }}" class="button primary">Crear Edicion</a>
+                    @endcan
                     <table class="table-auto w-full">
                         <thead>
                             <tr>
@@ -36,6 +38,7 @@
                                         @endif
                                     </td>
 
+                                    @can('update', $edicion)
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('ediciones.edit', $edicion) }}" class="btn btn-sm btn-warning">Editar</a>
                                         <form action="{{ route('ediciones.destroy', $edicion) }}" method="POST" class="inline">
@@ -43,6 +46,11 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                         </form>
+                                    </td>
+                                    @endcan
+
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('ediciones.grupos.index', ['edicion' => $edicion]) }}" class="btn btn-sm btn-primary">Ver Grupos</a>
                                     </td>
                                 </tr>
                             @endforeach

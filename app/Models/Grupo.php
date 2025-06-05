@@ -16,7 +16,8 @@ class Grupo extends Model
         'tutor',
         'centro_id',
         'ciclo_id',
-        'categoria_id'
+        'categoria_id',
+        'edicion_id',
     ];
     public function centro()
     {
@@ -38,5 +39,8 @@ class Grupo extends Model
     {
         return $this->hasMany(Participante::class);
     }
-
+    public function edicion()
+    {
+        return $this->belongsTo(Edicion::class);
+    }
 }

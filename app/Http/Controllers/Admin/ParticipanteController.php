@@ -14,7 +14,7 @@ class ParticipanteController extends Controller
     public function index(Grupo $grupo)
     {
         $this->authorize('view', $grupo);
-        $participantes = $grupo->participantes()->with('grupo')->get();
+        $participantes = $grupo->participantes()->get();
         return view('admin.participantes.index', compact('participantes', 'grupo'));
     }
 
