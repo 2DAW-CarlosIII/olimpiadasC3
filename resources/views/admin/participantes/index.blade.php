@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900">
                     @include('partials.alerts')
                     <a href="{{ route('grupos.participantes.create', ['grupo' => $grupo]) }}" class="button primary">Crear Participante</a>
+                    <a href="{{ route('ediciones.index') }}" class="button primary">Ver Ediciones</a>
                     <table class="table-auto w-full">
                         <thead>
                             <tr>

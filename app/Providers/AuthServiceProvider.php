@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         Categoria::class => CategoriaPolicy::class,
         Centro::class => CentroPolicy::class,
         Ciclo::class => CicloPolicy::class,
-        Edicion::class => EdicionPolicy::class,
+        Edicion::class => EdicionPolicy::class, //ya estaba registrada la policy
         Grado::class => GradoPolicy::class,
         Grupo::class => GrupoPolicy::class,
         Patrocinador::class => PatrocinadorPolicy::class,

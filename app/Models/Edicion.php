@@ -43,6 +43,10 @@ class Edicion extends Model
         return $this->belongsToMany(Categoria::class, 'categorias_ediciones')
                     ->withPivot('num_convocatoria');
     }
+    public function grupos()
+    {
+        return $this->hasMany(Grupo::class);
+    }
 
 }
 

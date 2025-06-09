@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Grupo;
+use App\Models\Edicion;
 use App\Providers\MoodleServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,17 +18,23 @@ class GrupoController extends Controller
     */
     public function __construct(MoodleServiceProvider $moodleService)
     {
-        $this->authorizeResource(Grupo::class, 'grupo');
+        //lo hago manual la autorizacion de recursos
         $this->moodleService = $moodleService;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Edicion $edicion)
     {
-        $grupos = Auth::user()->isAdmin() ? Grupo::all() : Grupo::where('tutor', Auth::id())->get();
-        return view('admin.grupos.index', ['grupos' => $grupos]);
+        //le estoy indicando que esa edicion esta en grupo porque laravel se piensa que ese metodo esta en edicionPolicy porque la instancia es de edicion
+        $this->authorize('soloVerGruposEdicion', [Grupo::class, $edicion]);
+        if (Auth::user()->isAdmin()) { //parecido a EdicionController el bloque
+            $grupos = $edicion->grupos()->get();
+        } else {
+            $grupos = $edicion->grupos()->where('tutor', Auth::id())->get();
+        }
+        return view('admin.grupos.index', ['grupos' => $grupos, 'edicion' => $edicion]);
     }
 
     /**
@@ -35,6 +42,7 @@ class GrupoController extends Controller
      */
     public function show(Grupo $grupo)
     {
+        $this->authorize('view', $grupo);
         return view('admin.grupos.show', compact('grupo'));
     }
 
@@ -69,13 +77,17 @@ class GrupoController extends Controller
 
     public function edit(Grupo $grupo)
     {
-        return view('admin.grupos.edit', compact('grupo'));
+        $this->authorize('update', $grupo);
+        $edicion = $grupo->edicion;
+        return view('admin.grupos.edit', compact('grupo', 'edicion'));
     }
     /**
      * Update the specified resource in storage.
      */
 
     public function update(Request $request, Grupo $grupo){
+        $this->authorize('update', $grupo);
+        $edicion = $grupo->edicion;
         $request->validate([
             'nombre' => 'required|max:100',
         ]);
@@ -83,7 +95,7 @@ class GrupoController extends Controller
         $grupo->nombre = $request->nombre;
         $grupo->save();
 
-        return redirect()->route('grupos.index')->with('success', 'Grupo actualizado correctamente.');
+        return redirect()->route('ediciones.grupos.index', ['edicion' => $edicion])->with('success', 'Grupo actualizado correctamente.');
     }
 
     /**
@@ -92,8 +104,10 @@ class GrupoController extends Controller
 
     public function destroy(Grupo $grupo)
     {
+        $this->authorize('delete', $grupo);
+        $edicion = $grupo->edicion;
         $grupo->delete();
-        return redirect()->route('grupos.index')->with('success', 'Grupo eliminado correctamente.');
+        return redirect()->route('ediciones.grupos.index', ['edicion' => $edicion])->with('success', 'Grupo eliminado correctamente.');
     }
 
     public function crearUsuarioMoodle(Grupo $grupo)
