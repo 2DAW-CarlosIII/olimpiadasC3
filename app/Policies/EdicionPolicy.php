@@ -22,7 +22,7 @@ class EdicionPolicy
      */
     public function view(User $user, Edicion $edicion): bool
     {
-        return $user->isAdmin();
+        return true; //se encarga el before
     }
 
     /**
