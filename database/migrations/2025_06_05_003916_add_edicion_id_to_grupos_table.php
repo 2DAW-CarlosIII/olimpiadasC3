@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('grupos', function (Blueprint $table) {
-            $table->unsignedBigInteger('edicion_id')->after('categoria_id');
+            $table->unsignedBigInteger('edicion_id')->nullable()->after('categoria_id');
             $table->foreign('edicion_id')->references('id')->on('ediciones')->onDelete('cascade')->onUpdate('cascade');
         });
         $ultimaEdicion = Edicion::latest()->first();
