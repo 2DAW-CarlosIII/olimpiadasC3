@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Curso;
 
 class CursoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Edicion $edicion)
     {
-        $cursos = Curso::all();
-        return view('admin.cursos.index', compact('cursos'));
+        $cursos = $edicion->cursos;
+        return view('ediciones.cursos.index', compact('cursos'));
     }
 
     /**
@@ -27,7 +29,7 @@ class CursoController extends Controller
             return !($curso);
         });
 
-        return view('admin.cursos.create', compact('ediciones'));
+        return view('ediciones.cursos.create');
     }
 
     /**
@@ -44,7 +46,7 @@ class CursoController extends Controller
             'nombre' => $request->nombre,
         ]);
 
-        return redirect()->route('cursos.index')->with('success', 'Curso creado con éxito.');
+        return redirect()->route('ediciones.index')->with('success', 'Curso creado con éxito.');
     }
 
     /**
@@ -52,7 +54,7 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
-        return view('admin.cursos.show', compact('curso'));
+        return view('cursos.show', compact('cursos'));
     }
 
     /**
@@ -60,7 +62,7 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
-        return view('admin.cursos.edit', compact('curso'));
+        return view('ediciones.cursos.edit', compact('cursos'));
     }
 
     /**
@@ -70,13 +72,15 @@ class CursoController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string',
+            'url' => 'required|string'
         ]);
 
         $curso->update([
             'nombre' => $request->nombre,
+            'url' => $request->url
         ]);
 
-        return redirect()->route('cursos.index')->with('success', 'Curso actualizado con éxito.');
+        return redirect()->route('ediciones.index')->with('success', 'Curso actualizado con éxito.');
     }
 
     /**
@@ -85,6 +89,6 @@ class CursoController extends Controller
     public function destroy(Curso $curso)
     {
         $curso->delete();
-        return redirect()->route('cursos.index')->with('success', 'Curso eliminado con éxito.');
+        return redirect()->route('ediciones.index')->with('success', 'Curso eliminado con éxito.');
     }
 }

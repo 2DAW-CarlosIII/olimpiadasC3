@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @include('partials.alerts')
-                    <form action="{{ route('cursos.store') }}" method="POST">
+                    <form action="{{ route('ediciones.cursos.store' }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="id">Edición:</label>

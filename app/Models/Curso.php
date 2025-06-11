@@ -13,7 +13,7 @@ class Curso extends Model
 
     protected $fillable = [
         'nombre',
-        'url'
+        'url',
         ];
 
     public function edicion()

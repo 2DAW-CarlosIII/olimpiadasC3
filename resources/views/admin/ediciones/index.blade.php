@@ -19,6 +19,7 @@
                                 <th class="px-4 py-2">Fecha Apertura</th>
                                 <th class="px-4 py-2">Fecha Cierre</th>
                                 <th class="px-4 py-2">File CSS</th>
+                                <th class="px-4 py-2">Cursos</th>
                                 <th class="px-4 py-2">Acciones</th>
                             </tr>
                         </thead>
@@ -34,6 +35,9 @@
                                         @if ($edicion->css_file)
                                             <a href="{{ asset('storage/' . $edicion->css_file) }}" target="_blank" class="text-blue-500 underline">Ver archivo CSS</a>
                                         @endif
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                            <a href="{{ route('ediciones.cursos.index', $edicion) }}" target="_blank" class="text-blue-500">Ver cursos</a>
                                     </td>
 
                                     <td class="border px-4 py-2">
