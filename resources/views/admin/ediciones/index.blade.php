@@ -35,19 +35,19 @@
                                             <a href="{{ asset('storage/' . $edicion->css_file) }}" target="_blank" class="text-blue-500 underline">Ver archivo CSS</a>
                                         @endif
                                     </td>
-
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('ediciones.edit', $edicion) }}" class="btn btn-sm btn-warning">Editar</a>
+
+                                        @if($edicion->curso)
+                                        <a href="{{ route('ediciones.cursos.index', ['edicion' => $edicion]) }}" class="btn btn-sm btn-primary">Ver Cursos</a>
+                                        @else
+                                        <a href="{{ route('ediciones.cursos.create', ['edicion' => $edicion]) }}" class="btn btn-sm btn-primary">Crear Curso</a>
+                                        @endif
                                         <form action="{{ route('ediciones.destroy', $edicion) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                         </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border px-4 py-2">
-                                        <a href="{{ route('ediciones.cursos.index', ['edicion' => $edicion]) }}" class="btn btn-sm btn-primary">Ver Cursos</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -65,6 +65,6 @@
 
                         <!-- Six -->
                             <section id="ejercicios_ediciones_anteriores">
-                                    @include('partials.frontend.ejercicios_ediciones_anteriores')
+                                   <x-ejercicio-ediciones/>
                             </section>
                 </div>

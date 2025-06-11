@@ -34,7 +34,6 @@ class CursoController extends Controller
         $request->validate([
             'nombre' => 'required|max:100',
             'url' => 'required|max:255',
-            'edicion_id' => 'required|exists:ediciones,id',
         ]);
 
         $edicion->curso()->create([
@@ -71,7 +70,7 @@ class CursoController extends Controller
         $request->validate([
             'nombre' => 'required|max:100',
             'url' => 'required|max:255',
-            'edicion_id' => 'required|exists:ediciones,id',
+            
 
 
         ]);
@@ -90,6 +89,6 @@ class CursoController extends Controller
     {
         $edicion = $curso->edicion;
         $curso->delete();
-        return redirect()->route('ediciones.cursos.index', ['edicion' => $edicion]);
+        return redirect()->route('ediciones.index', ['edicion' => $edicion]);
     }
 }
