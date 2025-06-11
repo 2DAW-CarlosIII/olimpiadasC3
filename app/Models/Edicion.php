@@ -38,6 +38,10 @@ class Edicion extends Model
         return $this->hasOne(Resultado::class, 'id');
     }
 
+    public function cursos(){
+        return $this->hasOne(Curso::class, 'id');
+    }
+
     public function categorias()
     {
         return $this->belongsToMany(Categoria::class, 'categorias_ediciones')
