@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Edicion;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class EdicionController extends Controller
@@ -13,8 +14,9 @@ class EdicionController extends Controller
      */
     public function index()
     {
+        $cursos = Curso::all();
         $ediciones = Edicion::all();
-        return view('admin.ediciones.index', compact('ediciones'));
+        return view('admin.ediciones.index', compact('ediciones', 'cursos'));
     }
 
     /**
