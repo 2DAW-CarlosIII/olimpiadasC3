@@ -13,7 +13,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ParticipanteController;
 use App\Http\Controllers\Admin\EdicionController;
 use App\Http\Controllers\Admin\ResultadoController;
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\SessionController;
+use App\Models\Curso;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         ->parameters(['patrocinadores' => 'patrocinador']);
     Route::resource('pruebas', PruebaController::class);
     Route::resource('grupos.participantes', ParticipanteController::class)->shallow();
+    Route::resource('ediciones.cursos', CursoController::class)->shallow()
+        ->parameters(['ediciones' => 'edicion']);
 });
 
 Route::middleware('auth')->group(function () {
