@@ -68,7 +68,19 @@ class CursoController extends Controller
      */
     public function update(Request $request, Curso $curso)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:100',
+            'url' => 'required|max:255',
+            'edicion_id' => 'required|exists:ediciones,id',
+
+
+        ]);
+        $edicion = $curso->edicion;
+        $curso->nombre = $request->nombre;
+        $curso->url = $request->url;
+        $curso->edicion_id = $edicion->id;
+        $curso->save();
+        return redirect()->route('ediciones.cursos.index', ['edicion' => $edicion]);
     }
 
     /**
