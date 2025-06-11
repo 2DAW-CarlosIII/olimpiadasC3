@@ -44,6 +44,11 @@ class Edicion extends Model
                     ->withPivot('num_convocatoria');
     }
 
+    public function curso()
+    {
+        return $this->hasOne(Curso::class);
+    }
+
 }
 
 //faltan añadir las relaciones entre tablas

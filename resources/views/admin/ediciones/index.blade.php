@@ -45,6 +45,11 @@
                                         </form>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('ediciones.cursos.index', ['edicion' => $edicion]) }}" class="btn btn-sm btn-primary">Ver Cursos</a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

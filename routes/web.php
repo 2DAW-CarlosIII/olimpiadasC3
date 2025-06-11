@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\CentroController;
 use App\Http\Controllers\Admin\CicloController;
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\Admin\GradoController;
 use App\Http\Controllers\Admin\GrupoController;
 use App\Http\Controllers\InscripcionesController;
@@ -55,6 +56,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         ->parameters(['patrocinadores' => 'patrocinador']);
     Route::resource('pruebas', PruebaController::class);
     Route::resource('grupos.participantes', ParticipanteController::class)->shallow();
+    Route::resource('ediciones.cursos', CursoController::class)->parameters(['ediciones' => 'edicion'])->shallow();
 });
 
 Route::middleware('auth')->group(function () {
