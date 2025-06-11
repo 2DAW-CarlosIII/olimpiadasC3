@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('nombre', 100)->nullable();
             $table->string('url', 255)->nullable();
             $table->timestamps();
+            $table->foreign('id')
+                ->references('id')
+                ->on('ediciones')
+                ->onDelete('cascade');
         });
     }
 

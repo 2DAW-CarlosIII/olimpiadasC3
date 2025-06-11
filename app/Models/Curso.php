@@ -15,4 +15,9 @@ class Curso extends Model
         'nombre',
         'url'
         ];
+
+    public function edicion()
+    {
+        return $this->belongsTo(Edicion::class, 'id');
+    }
 }
