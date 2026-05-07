@@ -15,6 +15,7 @@ use App\Http\Controllers\ResultadosOlimpiadasController;
 use App\Http\Controllers\Admin\ParticipanteController;
 use App\Http\Controllers\Admin\EdicionController;
 use App\Http\Controllers\Admin\ResultadoController;
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\SessionController;
 
 /*
@@ -29,7 +30,9 @@ use App\Http\Controllers\SessionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $edicionesAnteriores = \App\Models\Edicion::with('curso')->get();
+
+    return view('welcome', compact('edicionesAnteriores'));
 })->name('home');
 
 Route::post('/inscripcion', [InscripcionesController::class, 'store'])->name('inscripcion');
@@ -48,6 +51,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::resource('grados.ciclos', CicloController::class)->shallow();
     Route::resource('ediciones', EdicionController::class)
         ->parameters(['ediciones' => 'edicion']);
+    Route::resource('ediciones.cursos', CursoController::class)
+        ->parameters(['ediciones' => 'edicion', 'cursos' => 'curso'])->shallow();
     Route::resource('resultados', ResultadoController::class);
     Route::resource('grados', GradoController::class);
     Route::get('grupos/{grupo}/crearUsuarioMoodle', [GrupoController::class, 'crearUsuarioMoodle'])->name('grupos.crearUsuarioMoodle');

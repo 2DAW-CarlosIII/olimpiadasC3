@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CiclosTableSeeder::class);
         $this->call(CategoriasTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(CursosTableSeeder::class);
         if (App::environment('local')) {
             $this->call(EdicionesSeeder::class);
             $this->call(PruebasTableSeeder::class);

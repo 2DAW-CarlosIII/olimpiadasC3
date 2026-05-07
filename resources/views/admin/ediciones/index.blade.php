@@ -32,17 +32,25 @@
                                     <td class="border px-4 py-2">{{ $edicion->fecha_cierre }}</td>
                                     <td class="border px-4 py-2">
                                         @if ($edicion->css_file)
-                                            <a href="{{ asset('storage/' . $edicion->css_file) }}" target="_blank" class="text-blue-500 underline">Ver archivo CSS</a>
+                                            <a href="{{ asset('storage/' . $edicion->css_file) }}" target="_blank"
+                                                class="text-blue-500 underline">Ver archivo CSS</a>
                                         @endif
                                     </td>
 
                                     <td class="border px-4 py-2">
-                                        <a href="{{ route('ediciones.edit', $edicion) }}" class="btn btn-sm btn-warning">Editar</a>
-                                        <form action="{{ route('ediciones.destroy', $edicion) }}" method="POST" class="inline">
+                                        <a href="{{ route('ediciones.edit', $edicion) }}"
+                                            class="btn btn-sm btn-warning">Editar</a>
+                                        <form action="{{ route('ediciones.destroy', $edicion) }}" method="POST"
+                                            class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                         </form>
+                                    </td>
+
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('ediciones.cursos.index', ['edicion' => $edicion]) }}"
+                                            class="btn btn-sm btn-primary">Ver Curso</a>
                                     </td>
                                 </tr>
                             @endforeach
