@@ -4,11 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Prueba;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,7 +24,17 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         if (App::environment('local')) {
             $this->call(EdicionesSeeder::class);
+            $this->call(PatrocinadoresSeeder::class);
+            $this->call(CategoriasEdicionesSeeder::class);
             $this->call(PruebasTableSeeder::class);
+            $this->call(CursosSeeder::class);
+            $this->call(ResultadosSeeder::class);
+            $this->call(GruposSeeder::class);
+            $this->call(ParticipantesSeeder::class);
+            $this->call(EdicionGrupoSeeder::class);
+            $this->call(ResultadosPruebasSeeder::class);
+            $this->call(ResultadoOlimpiadaCacheSeeder::class);
+            $this->command->info('¡Creados 30 ResultadosOlimpiadaCache!');
         }
         // \App\Models\User::factory(10)->create();
 

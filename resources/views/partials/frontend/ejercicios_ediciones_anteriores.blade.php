@@ -18,8 +18,15 @@
             </ul>
         </li>
     </ul>
-    <p>La siguiente es la relación de cursos en las que se han publicado los ejercicios de las últimas ediciones:</p>
+
+
+
+{{-- <x-frontend.curso-component> </x-frontend.curso-component> --}}
+<x-frontend.ediciones-view-components-component> </x-frontend.ediciones-view-components-component>
+
+   {{--  <p>La siguiente es la relación de cursos en las que se han publicado los ejercicios de las últimas ediciones:</p>
     <ul>
+     
         <li class="icon solid">
             <a href="https://cifpcarlos3.net/codeweek/course/view.php?id=13" target="_blank">
                 <h4><b>XVI Olimpiadas</b> (Curso 2024-2025)</h4>
@@ -40,5 +47,5 @@
                 <h4><b>XIII Olimpiadas</b> (Curso 2021-2022)</h4>
             </a>
         </li>
-    </ul>
+    </ul> --}}
 </div>
