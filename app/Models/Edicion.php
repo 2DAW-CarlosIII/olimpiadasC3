@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Edicion extends Model
 {
@@ -32,6 +33,11 @@ class Edicion extends Model
         // Obtener la edición más reciente por fecha de apertura
         return Edicion::orderBy('fecha_apertura', 'DESC')->first();
     }
+    
+    public static function withCurso()
+    {
+        return self::with('curso')->orderBy('curso_escolar', 'desc')->get();
+    }
 
     public function resultados()
     {
@@ -47,6 +53,13 @@ class Edicion extends Model
     public function grupos()
     {
         return $this->belongsToMany(Grupo::class, 'edicion_grupo');
+    }
+
+
+    // Relacion 1 a 1 con Curso.
+    public function curso(): HasOne
+    {
+        return $this->hasOne(Curso::class, 'edicion_id');
     }
 
 }
