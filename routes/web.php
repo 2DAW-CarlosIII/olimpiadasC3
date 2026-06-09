@@ -15,6 +15,7 @@ use App\Http\Controllers\ResultadosOlimpiadasController;
 use App\Http\Controllers\Admin\ParticipanteController;
 use App\Http\Controllers\Admin\EdicionController;
 use App\Http\Controllers\Admin\ResultadoController;
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\SessionController;
 
 /*
@@ -29,11 +30,11 @@ use App\Http\Controllers\SessionController;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 })->name('home');
 
 Route::post('/inscripcion', [InscripcionesController::class, 'store'])->name('inscripcion');
-
 Route::prefix('sessions')->group(function () {
     Route::post('setEdicion', [SessionController::class, 'setEdicion'])->name('sessions.setEdicion');
 });
@@ -62,6 +63,14 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         Route::post('files',           [EdicionFileController::class, 'store'])  ->name('files.store');
         Route::delete('files/{file}',  [EdicionFileController::class, 'destroy'])->name('files.destroy');
     });
+
+    Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
+    Route::get('cursos/create', [CursoController::class, 'create'])->name('cursos.create');
+    Route::post('cursos', [CursoController::class, 'store'])->name('cursos.store');
+    Route::get('cursos/{curso}', [CursoController::class, 'show'])->name('cursos.show');
+    Route::get('cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
+    Route::put('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');
+    Route::delete('cursos/{curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
 });
 
 Route::get('/resultados_live',        [ResultadosOlimpiadasController::class, 'index'])->name('resultados_live.index');

@@ -20,15 +20,15 @@ class Grupo extends Model
     ];
     public function centro()
     {
-        return $this->belongsTo(Centro::class);
+        return $this->belongsTo(Centro::class, 'centro_id');
     }
     public function ciclo()
     {
-        return $this->belongsTo(Ciclo::class);
+        return $this->belongsTo(Ciclo::class, 'ciclo_id');
     }
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class, 'categoria_id');
     }
     public function tutor()
     {
@@ -36,7 +36,7 @@ class Grupo extends Model
     }
     public function participantes()
     {
-        return $this->hasMany(Participante::class);
+        return $this->hasMany(Participante::class, 'grupo_id');
     }
     public function edicion()
     {

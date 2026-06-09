@@ -67,6 +67,6 @@ class Categoria extends Model
 
     public function grupos()
     {
-        return $this->hasMany(Grupo::class);
+        return $this->hasMany(Grupo::class, 'categoria_id');
     }
 }

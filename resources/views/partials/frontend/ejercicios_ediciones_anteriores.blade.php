@@ -19,6 +19,7 @@
         </li>
     </ul>
     <p>La siguiente es la relación de cursos en las que se han publicado los ejercicios de las últimas ediciones:</p>
+
     <ul>
         <li class="icon solid">
             <a href="https://cifpcarlos3.net/codeweek/course/view.php?id=13" target="_blank">

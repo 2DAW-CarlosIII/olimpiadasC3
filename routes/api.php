@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\CursoController;
+use App\Http\Controllers\Api\ResultadoOlimpiadaController;
+use App\Models\ResultadoOlimpiada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use LDAP\Result;
+use PHPUnit\Framework\MockObject\Rule\Parameters;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
 });
+Route::apiResource('miPuesto', ResultadoOlimpiadaController::class)->parameters(['miPuesto' => 'nombreCompleto']);
+
+Route::prefix('v1')->group(function () {
+    Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
+});
+

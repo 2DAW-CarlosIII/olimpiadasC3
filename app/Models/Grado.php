@@ -16,6 +16,6 @@ class Grado extends Model
 
     public function ciclos()
     {
-        return $this->hasMany(Ciclo::class);
+        return $this->hasMany(Ciclo::class, 'grado_id');
     }
 }

@@ -21,13 +21,14 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt(env('ADMIN_PASSWORD', 'password')),
             ]);
             /*
-                if(config('app.env') ==='local'){
-                    // Crear 10 usuarios con el estado docente
-                    User::factory(10)->docente()->create();
-                    // Crear 30 usuarios con el estado estudiante
-                    User::factory(30)->estudiante()->create();
-                }
+            if(config('app.env') ==='local'){
+                // Crear 10 usuarios con el estado docente
+                User::factory(10)->docente()->create();
+                // Crear 30 usuarios con el estado estudiante
+                User::factory(30)->estudiante()->create();
+            }
             */
+            \App\Models\User::factory(15)->create();
             $this->command->info('¡Usuario administrador creado!');
         }
     }

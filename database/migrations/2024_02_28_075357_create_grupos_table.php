@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->string('abreviatura', 20);
-            $table->string('password', 20);
+            $table->string('password', 255);
             $table->foreignId('tutor')->constrained('users');
             $table->foreignId('centro_id')->constrained();
             $table->foreignId('ciclo_id')->constrained();
